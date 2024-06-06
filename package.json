@@ -4,7 +4,9 @@
   "description": "Ecommerce backed Rest API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "env-cmd -f ./config/dev.env nodemon index.js",
+    "start-uat": "env-cmd -f ./config/uat.env nodemon index.js"
   },
   "author": "Ranjeet Kumar",
   "license": "ISC",
