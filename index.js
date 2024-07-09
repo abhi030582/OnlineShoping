@@ -4,7 +4,6 @@ const colors = require('colors');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-
 var app = express();
 app.use(cors());
 
@@ -18,11 +17,9 @@ db.on('error', (error) => console.log(error.red));
 db.once('open', () => console.log("Connected to Database".green.underline.bold));
 
 //API's
-app.get("/health", (req, res) => {
-    res.send("Shoping Cart Application Running");
-});
-
 app.use('/api/v1/product', require('./routers/productRouter'));
+app.use('/api/v1', require('./routers/categoryRouter'));
+app.use('/api/v1', require('./routers/userRouter'));
 
 
 let server = app.listen(process.env.PORT, () => {

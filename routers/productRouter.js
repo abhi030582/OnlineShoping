@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Product = require('../models/ProductModel');
+const Category = require('../models/Catogory');
 
 router.get('/', async (req, res) => {
     try {
@@ -18,19 +19,46 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    try {
-        const product = new Product(req.body);
-        await product.save();
-        res.status(201).json({
-            success: true,
-            product
-        });
-    } catch (error) {
-        res.status(400).json({
-            success: false,
-            error: error.message
-        });
+    let categories =null;
+    try
+    {
+       categories = await Category.findOne({name:req.body.category});
+       console.log(categories);
     }
+    catch(error)
+    {
+        res.status(401).json({
+            "success":false,
+            'Error':error.message
+        })
+
+    }
+    if(categories)
+        {
+            try {
+                const product = new Product(req.body);
+                await product.save();
+                res.status(201).json({
+                    success: true,
+                    product
+                });
+            } catch (error) {
+                res.status(400).json({
+                    success: false,
+                    error: error.message
+                });
+            }
+        }
+        else
+        {
+            res.status(400).json({
+                success: false,
+                error: 'Invalid Category'
+        })
+    }   
+
+
+   
 });
 
 router.get('/:id', async (req, res) => {
