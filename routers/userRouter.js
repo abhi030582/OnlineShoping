@@ -49,9 +49,15 @@ else
     const isMatch = bcrypt.compare(password,user.password);
     if(isMatch)
     {
+      const payLoad ={
+        username:user.name,
+        email:user.email
+      };
+      let token = jwt.sign(payLoad,process.env.JWT_KEY,{expiresIn: '30m'});
         res.status(201).json({
          status:true,
-         message:'user login successfull'
+         message:'user login successfull',
+         "token":token
         });
     }
 }
