@@ -20,6 +20,7 @@ db.once('open', () => console.log("Connected to Database".green.underline.bold))
 app.use('/api/v1/product', require('./routers/productRouter'));
 app.use('/api/v1', require('./routers/categoryRouter'));
 app.use('/api/v1', require('./routers/userRouter'));
+app.use('/api/v1/order', require('./routers/orderRouter'));
 
 
 let server = app.listen(process.env.PORT, () => {
