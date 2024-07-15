@@ -1,3 +1,62 @@
+/**
+ * @swagger
+ * tags:
+ *   name: User
+ *   description: User management API
+ */
+
+/**
+ * @swagger
+ * /api/v1/signup:
+ *   post:
+ *     summary: Get all users
+ *     tags: [User]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: A list of user.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 products:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Bad request
+ */
+
+/**
+ * @swagger
+ * /api/v1/login:
+ *   post:
+ *     summary: users Login authentication
+ *     tags: [User]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: user login.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 products:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Bad request
+ */
+
 const express =require("express");
 const router = express.Router();
 const User = require("../models/User.js");

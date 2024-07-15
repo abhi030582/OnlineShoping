@@ -1,3 +1,163 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Products
+ *   description: Product management API
+ */
+
+/**
+ * @swagger
+ * /api/v1/product:
+ *   get:
+ *     summary: Get all products
+ *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: A list of products.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 products:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Bad request
+ */
+
+/**
+ * @swagger
+ * /api/v1/product:
+ *   post:
+ *     summary: Create a new product
+ *     tags: [Products]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       201:
+ *         description: Product created successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 product:
+ *                   $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Invalid Category / Bad request
+ */
+
+/**
+ * @swagger
+ * /api/v1/product/{id}:
+ *   get:
+ *     summary: Get a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Product ID
+ *     responses:
+ *       200:
+ *         description: Product found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 product:
+ *                   $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Product not found
+ *       400:
+ *         description: Bad request
+ */
+
+/**
+ * @swagger
+ * /api/v1/product/{id}:
+ *   put:
+ *     summary: Update a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Product ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       200:
+ *         description: Product updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 product:
+ *                   $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Product not found
+ *       400:
+ *         description: Bad request
+ */
+
+/**
+ * @swagger
+ * /api/v1/product/{id}:
+ *   delete:
+ *     summary: Delete a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Product ID
+ *     responses:
+ *       200:
+ *         description: Product deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Product not found
+ *       400:
+ *         description: Bad request
+ */
+
 const express = require("express");
 const router = express.Router();
 const Product = require('../models/ProductModel');
