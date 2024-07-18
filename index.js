@@ -45,6 +45,7 @@ app.use('/api/v1/product', require('./routers/productRouter'));
 app.use('/api/v1', require('./routers/categoryRouter'));
 app.use('/api/v1', require('./routers/userRouter'));
 app.use('/api/v1/order', require('./routers/orderRouter'));
+app.use('/api/v1', require('./routers/emailRouter'));
 
 let server = app.listen(process.env.PORT, () => {
     console.log(`Server is running on http://localhost:${process.env.PORT}/`);
